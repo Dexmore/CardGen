@@ -12,7 +12,7 @@ AI가 주제에 맞는 학습 카드 JSON을 생성하고, 즉시 HTML 파일로
 ## 설치
 
 ```bash
-git clone https://github.com/Dexmore/cardgen.git
+git clone https://github.com/Dexmore/CardGen.git
 cd cardgen
 bash install.sh
 ```
