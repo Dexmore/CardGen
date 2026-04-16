@@ -1,0 +1,207 @@
+<div class="study-card-wrap" data-embed-mode="safe"><style>
+.study-card-wrap{--text:#1a1428;--sub:#5c5270;--primary:#6f2cff;--primary-strong:#5a14e8;--primary-soft:rgba(111,44,255,.07);--line:rgba(103,0,230,.09);--line-strong:rgba(103,0,230,.15);--panel:rgba(255,255,255,.88);--card:#fff;--pink-soft:rgba(255,99,132,.11);--blue-soft:rgba(54,162,235,.11);--yellow-soft:rgba(255,206,86,.16);--green-soft:rgba(75,192,192,.13);--teal-soft:rgba(20,184,166,.12);--shadow-lg:0 24px 52px rgba(79,35,170,.11);--shadow-md:0 10px 28px rgba(79,35,170,.07);--shadow-sm:0 4px 14px rgba(79,35,170,.05);--radius-xl:28px;--radius-lg:20px;--radius-md:14px;--radius-sm:10px;color:var(--text);font-family:"Pretendard","Noto Sans KR",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.78;font-size:16px;-webkit-font-smoothing:antialiased}
+.study-card-wrap *{box-sizing:border-box}
+
+/* ── 컨테이너 ── */
+.study-card-container{max-width:1080px;margin:0 auto;padding:28px;background:radial-gradient(ellipse at top left,rgba(160,110,255,.14),transparent 40%),radial-gradient(ellipse at top right,rgba(103,0,230,.08),transparent 35%),linear-gradient(170deg,#fdfcff 0%,#f8f5ff 50%,#f3efff 100%);border-radius:32px}
+
+/* ── 히어로 ── */
+.study-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#5b17e8 0%,#7c3aff 55%,#9d63ff 100%);color:#fff;padding:36px 34px 30px;border-radius:var(--radius-xl);box-shadow:0 20px 48px rgba(91,23,232,.28);margin-bottom:22px}
+.study-hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+.study-hero h1{margin:0 0 8px;font-size:34px;line-height:1.2;font-weight:900;letter-spacing:-.03em}
+.study-hero p{margin:0 0 18px;font-size:16px;color:rgba(255,255,255,.82);line-height:1.65}
+.study-tag-row,.study-chip-row{display:flex;gap:7px;flex-wrap:wrap}
+.study-tag,.study-mini-chip,.study-badge,.study-answer-chip,.study-related{display:inline-flex;align-items:center;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:700;border:1px solid transparent;letter-spacing:.01em}
+.study-tag{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.2);color:#fff}
+
+/* ── 개요 그리드 ── */
+.study-overview{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;margin-bottom:22px}
+.study-panel{background:var(--panel);border:1px solid rgba(103,0,230,.07);backdrop-filter:blur(12px);border-radius:var(--radius-xl);box-shadow:var(--shadow-md)}
+.study-panel-header{padding:22px 24px 0}
+.study-panel-title{margin:0;font-size:19px;font-weight:900;color:#1e1430;letter-spacing:-.01em}
+.study-panel-body{padding:14px 24px 22px}
+.study-summary-list,.study-list{margin:0;padding-left:20px}
+.study-summary-list li,.study-list li{font-size:15px;line-height:1.85;color:#4a4260;margin-bottom:12px}
+.study-summary-list li:last-child,.study-list li:last-child{margin-bottom:0}
+
+/* ── 메타 스탯 ── */
+.study-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.study-stat{background:rgba(255,255,255,.94);border:1px solid rgba(103,0,230,.07);border-radius:var(--radius-lg);padding:18px 14px;text-align:center;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.study-stat span{display:block;font-size:12px;font-weight:700;color:#8a80a0;letter-spacing:.03em}
+
+/* ── 섹션 타이틀 ── */
+.study-section-title{display:flex;align-items:center;gap:9px;margin:0 0 14px;font-size:18px;font-weight:900;color:#1e1430;letter-spacing:-.01em}
+.study-section-title span{display:inline-flex;align-items:center;padding:3px 9px;border-radius:999px;background:rgba(103,0,230,.07);color:var(--primary);font-size:11px;font-weight:800;border:1px solid rgba(103,0,230,.1);text-transform:uppercase;letter-spacing:.06em}
+
+/* ── 카드 ── */
+.study-card{margin-bottom:14px;border-radius:var(--radius-xl);border:1px solid rgba(103,0,230,.09);background:#fff;box-shadow:var(--shadow-sm);overflow:hidden;transition:box-shadow .2s ease}
+.study-card:hover{box-shadow:var(--shadow-md)}
+.study-card.study-beginner{border-left:3px solid rgba(255,99,132,.35)}
+.study-card.study-intermediate{border-left:3px solid rgba(54,162,235,.35)}
+.study-card.study-advanced{border-left:3px solid rgba(255,159,64,.35)}
+.study-card-head{list-style:none;cursor:pointer;padding:20px 22px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+.study-card-head::-webkit-details-marker{display:none}
+.study-card-head:hover{background:rgba(111,44,255,.015)}
+.study-card-title-wrap{display:flex;align-items:flex-start;gap:13px;min-width:0;flex:1}
+.study-card-arrow{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:999px;background:var(--primary-soft);color:var(--primary-strong);font-size:11px;flex-shrink:0;margin-top:3px;transition:transform .2s ease,background .15s}
+.study-card[open] .study-card-arrow{transform:rotate(90deg);background:rgba(111,44,255,.12)}
+.study-question{min-width:0}
+.study-question h3{margin:0 0 9px;font-size:21px;line-height:1.38;font-weight:800;color:#16101f;letter-spacing:-.015em}
+.study-mini-chip{background:#fafafa;border-color:rgba(103,0,230,.08);color:#5c5270;font-size:11px}
+.study-mini-chip.level-beginner,.study-type-skill,.study-qa-chip.skill{background:var(--pink-soft);color:#b91c5a;border-color:rgba(255,99,132,.2)}
+.study-mini-chip.level-intermediate,.study-type-value,.study-qa-chip.value{background:var(--blue-soft);color:#1558b0;border-color:rgba(54,162,235,.2)}
+.study-mini-chip.level-advanced,.study-type-attitude,.study-qa-chip.attitude{background:rgba(255,159,64,.14);color:#9a6000;border-color:rgba(255,159,64,.2)}
+.study-type-problem,.study-qa-chip.problem{background:var(--green-soft);color:#0a7566;border-color:rgba(75,192,192,.2)}
+.study-index{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:38px;padding:0 11px;border-radius:12px;background:linear-gradient(135deg,rgba(103,0,230,.08),rgba(122,53,255,.14));color:var(--primary-strong);font-size:12px;font-weight:900;border:1px solid rgba(103,0,230,.11);letter-spacing:.02em}
+
+/* ── 카드 바디 ── */
+.study-card-body{padding:0 22px 24px;border-top:1px solid rgba(103,0,230,.07)}
+.study-badge-row{margin:16px 0 12px}
+.study-badge{background:rgba(103,0,230,.06);color:var(--primary-strong);border-color:rgba(103,0,230,.09);font-size:11px}
+
+/* ── 박스 공통 ── */
+.study-box{background:rgba(255,255,255,.97);border:1px solid rgba(103,0,230,.07);border-radius:var(--radius-lg);padding:18px 20px;box-shadow:0 2px 8px rgba(93,25,214,.03);margin-top:12px}
+.study-box h4{margin:0 0 11px;font-size:15px;font-weight:800;color:#1d1432;letter-spacing:-.005em}
+.study-box p,.study-box li{font-size:15px;color:#4a4260;line-height:1.85}
+.study-box p:last-child,.study-box li:last-child{margin-bottom:0}
+
+/* ── 형광펜 ── */
+.study-highlight{display:inline;padding:1px 4px;background:linear-gradient(transparent 38%,rgba(255,224,60,.72) 38%);border-radius:3px;font-weight:700;color:#1a1a1a}
+.study-highlight.cool{background:linear-gradient(transparent 38%,rgba(86,196,255,.62) 38%)}
+.study-highlight.pink{background:linear-gradient(transparent 38%,rgba(255,100,130,.55) 38%)}
+.study-highlight.green{background:linear-gradient(transparent 38%,rgba(72,210,130,.58) 38%)}
+.study-highlight.purple{background:linear-gradient(transparent 38%,rgba(175,115,255,.58) 38%)}
+
+/* ── QA 칩 ── */
+.study-qa-list{list-style:disc}
+.study-qa-chip{display:inline-flex;align-items:center;padding:3px 9px;border-radius:999px;font-size:11px;font-weight:800;border:1px solid transparent;margin-right:7px;vertical-align:middle}
+
+/* ── 코드 블록 ── */
+.study-code{overflow:hidden;border-radius:var(--radius-lg);border:1px solid rgba(127,44,255,.14);background:linear-gradient(180deg,#130d20 0%,#1a1230 100%);box-shadow:0 14px 36px rgba(20,8,50,.2)}
+.study-code-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.05)}
+.study-card-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.study-code-head strong{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#cdb8ff}
+.study-code-head span{font-size:12px;font-weight:600;color:#a89cc8}
+.study-code pre{margin:0;padding:18px 18px 20px;overflow:auto;font-size:15px;line-height:1.72;color:#f5f1ff;font-family:"Fira Code","Consolas","D2Coding",monospace;white-space:pre-wrap;tab-size:4;-moz-tab-size:4;word-break:break-all}
+.study-code code{font-family:inherit;font-size:inherit}
+/* pre 안 요소 크기 고정 — 한글 등 상속으로 글자 커지는 현상 방지 */
+.study-code pre *{font-size:15px !important;font-family:"Fira Code","Consolas","D2Coding",monospace !important;line-height:1.72 !important;font-weight:normal !important}
+
+/* ── TIP / WARNING ── */
+.study-tip,.study-warning{padding:14px 18px;border-radius:var(--radius-md);font-size:15px;line-height:1.82;margin-top:12px}
+.study-tip{background:rgba(111,44,255,.045);border:1px solid rgba(111,44,255,.1);color:#3a2d5e}
+.study-warning{background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);color:#4a1f1f}
+.study-tip strong{color:var(--primary-strong)}
+.study-warning strong{color:#c0392b}
+
+/* ── 답변 블록 ── */
+.study-answer-chip{background:rgba(103,0,230,.06);border-color:rgba(103,0,230,.1);color:var(--primary-strong);margin-bottom:7px;font-size:11px}
+.study-answer-block{background:rgba(255,255,255,.95);border:1px solid rgba(103,0,230,.07);border-left:3px solid #7a35ff;border-radius:var(--radius-md);padding:14px 16px}
+.study-answer-block p{margin:0;font-size:15px;color:#3a3254;line-height:1.82}
+
+/* ── 꼬리질문 ── */
+.study-followup-wrap{margin-top:12px;border:1px solid rgba(239,68,68,.15);border-radius:var(--radius-md);overflow:hidden}
+.study-followup-q{padding:13px 16px 11px;background:rgba(254,242,242,.7)}
+.study-followup-label{display:inline-block;font-size:11px;font-weight:800;color:#b91c1c;margin-bottom:5px;letter-spacing:.03em}
+.study-followup-qtext{margin:0;font-size:15px;font-weight:700;color:#1e1430;line-height:1.6}
+.study-followup-a{padding:13px 16px;background:#fff;border-top:1px solid rgba(239,68,68,.1)}
+.study-followup-alabel{display:inline-block;font-size:11px;font-weight:800;color:#059669;margin-bottom:5px;letter-spacing:.03em}
+.study-followup-a p{margin:0;font-size:15px;color:#3a3254;line-height:1.82}
+
+/* ── 연관 질문 ── */
+.study-related{background:rgba(122,53,255,.08);color:var(--primary-strong);border-color:rgba(122,53,255,.13);font-size:12px}
+
+/* ── 핵심 공식 박스 (새 필드) ── */
+.study-formula-box{background:linear-gradient(135deg,rgba(111,44,255,.06),rgba(122,53,255,.04));border:1.5px solid rgba(111,44,255,.18);border-radius:var(--radius-md);padding:14px 18px;margin-top:12px;display:flex;align-items:flex-start;gap:12px}
+.study-formula-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.study-formula-text{font-size:15px;font-weight:700;color:#2d1a5e;line-height:1.7;letter-spacing:-.005em}
+
+/* ── 실무 사례 박스 (새 필드) ── */
+.study-realworld-box{background:linear-gradient(135deg,rgba(20,184,166,.07),rgba(16,185,129,.04));border:1px solid rgba(20,184,166,.2);border-radius:var(--radius-md);padding:14px 18px;margin-top:12px}
+.study-realworld-label{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:800;color:#0d7a6a;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px}
+.study-realworld-body{font-size:15px;color:#1e4a42;line-height:1.82}
+
+/* ── 학습 로드맵 박스 (새 필드) ── */
+.study-roadmap-box{margin-top:12px}
+.study-roadmap-row{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap}
+.study-roadmap-item{flex:1;min-width:120px;border-radius:var(--radius-sm);padding:12px 14px;display:flex;flex-direction:column;gap:5px}
+.study-roadmap-item.prev{background:rgba(54,162,235,.07);border:1px solid rgba(54,162,235,.18)}
+.study-roadmap-item.curr{background:linear-gradient(135deg,rgba(111,44,255,.09),rgba(122,53,255,.06));border:1.5px solid rgba(111,44,255,.2)}
+.study-roadmap-item.next{background:rgba(255,159,64,.07);border:1px solid rgba(255,159,64,.2)}
+.study-roadmap-badge{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.study-roadmap-item.prev .study-roadmap-badge{color:#1558b0}
+.study-roadmap-item.curr .study-roadmap-badge{color:var(--primary-strong)}
+.study-roadmap-item.next .study-roadmap-badge{color:#9a6000}
+.study-roadmap-content{font-size:13px;line-height:1.6;color:#3a3254;font-weight:500}
+
+/* ── 진행도 / 체크리스트 ── */
+.study-progress-box,.study-status-box{position:relative}
+.study-check-input,.study-status-input{position:absolute;opacity:0;pointer-events:none}
+.study-progress-box{display:grid;gap:12px}
+.study-progress-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:2px}
+.study-progress-head h4{margin:0;font-size:15px;font-weight:800;color:#1d1432}
+.study-progress-meta{font-size:13px;font-weight:800;color:var(--primary-strong)}
+.study-progress-bar{width:100%;height:10px;background:rgba(122,53,255,.07);border-radius:999px;overflow:hidden;border:1px solid rgba(103,0,230,.07)}
+.study-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#7a35ff,#a060ff);transition:width .25s ease;border-radius:999px}
+.study-checklist{display:grid;gap:9px}
+.study-check-row{position:relative}
+.study-check-item{display:flex;align-items:flex-start;gap:11px;padding:2px 0;cursor:pointer;position:relative}
+.study-check-row .study-check-input{position:absolute;opacity:0;pointer-events:none}
+.study-check-ui{width:22px;height:22px;flex:0 0 22px;margin-top:2px;border-radius:6px;border:1.5px solid rgba(122,53,255,.28);background:#fff;display:inline-flex;align-items:center;justify-content:center;transition:.18s ease}
+.study-check-ui:after{content:"✓";font-size:13px;font-weight:900;color:#fff;opacity:0;transform:scale(.7)}
+.study-check-text{font-size:15px;line-height:1.72;color:#4a4260;transition:.18s ease}
+.study-check-row .study-check-input:checked + .study-check-item .study-check-ui{background:linear-gradient(135deg,#7a35ff,#9d63ff);border-color:#7a35ff;box-shadow:0 4px 12px rgba(122,53,255,.22)}
+.study-check-row .study-check-input:checked + .study-check-item .study-check-ui:after{opacity:1;transform:scale(1)}
+.study-check-row .study-check-input:checked + .study-check-item .study-check-text{text-decoration:line-through;color:#a29ab5}
+
+/* ── 복습 상태 ── */
+.study-status-row{display:flex;flex-wrap:wrap;gap:7px}
+.study-status-chip{display:inline-flex;align-items:center;justify-content:center;padding:7px 14px;border-radius:999px;font-size:12px;font-weight:700;border:1px solid rgba(103,0,230,.09);background:#fafafa;color:#5c5270;cursor:pointer;transition:.18s ease;user-select:none}
+.study-status-chip:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(103,0,230,.08)}
+/* 카드 바디 상태 선택자 */
+.study-status-input[id$="status-notyet"]:checked ~ .study-status-row label[for$="status-notyet"]{background:rgba(255,99,132,.1);color:#b91c5a;border-color:rgba(255,99,132,.2);box-shadow:0 4px 12px rgba(255,99,132,.12);transform:translateY(-1px)}
+.study-status-input[id$="status-understood"]:checked ~ .study-status-row label[for$="status-understood"]{background:rgba(54,162,235,.1);color:#1558b0;border-color:rgba(54,162,235,.2);box-shadow:0 4px 12px rgba(54,162,235,.12);transform:translateY(-1px)}
+.study-status-input[id$="status-review"]:checked ~ .study-status-row label[for$="status-review"]{background:rgba(255,206,86,.15);color:#9a6000;border-color:rgba(255,206,86,.22);box-shadow:0 4px 12px rgba(255,206,86,.14);transform:translateY(-1px)}
+.study-status-input[id$="status-mastered"]:checked ~ .study-status-row label[for$="status-mastered"]{background:rgba(75,192,192,.13);color:#0a7566;border-color:rgba(75,192,192,.2);box-shadow:0 4px 12px rgba(75,192,192,.12);transform:translateY(-1px)}
+/* 카드 헤더 인라인 상태 선택자 (id: qN-hd-KEY) */
+.study-inline-status{position:relative}
+.study-inline-status .study-status-input{position:absolute;opacity:0;pointer-events:none}
+.study-status-input[id$="-hd-notyet"]:checked ~ .study-status-row label[for$="-hd-notyet"]{background:rgba(255,99,132,.1);color:#b91c5a;border-color:rgba(255,99,132,.2);box-shadow:0 4px 12px rgba(255,99,132,.12);transform:translateY(-1px)}
+.study-status-input[id$="-hd-understood"]:checked ~ .study-status-row label[for$="-hd-understood"]{background:rgba(54,162,235,.1);color:#1558b0;border-color:rgba(54,162,235,.2);box-shadow:0 4px 12px rgba(54,162,235,.12);transform:translateY(-1px)}
+.study-status-input[id$="-hd-review"]:checked ~ .study-status-row label[for$="-hd-review"]{background:rgba(255,206,86,.15);color:#9a6000;border-color:rgba(255,206,86,.22);box-shadow:0 4px 12px rgba(255,206,86,.14);transform:translateY(-1px)}
+.study-status-input[id$="-hd-mastered"]:checked ~ .study-status-row label[for$="-hd-mastered"]{background:rgba(75,192,192,.13);color:#0a7566;border-color:rgba(75,192,192,.2);box-shadow:0 4px 12px rgba(75,192,192,.12);transform:translateY(-1px)}
+.study-progress-meta .study-progress-state{display:none}
+/* 메타 스탯 strong: 한 줄 강제 (난이도 구성 등 긴 텍스트 두 줄 방지) */
+.study-stat strong{display:block;font-size:15px;line-height:1.2;font-weight:900;color:var(--primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+
+/* ── 토글 박스 ── */
+.study-toggle-box{background:#fff;border:1px solid rgba(103,0,230,.07);border-radius:var(--radius-lg);box-shadow:0 2px 8px rgba(93,25,214,.03);margin-top:12px;overflow:hidden}
+.study-toggle-head{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;cursor:pointer;list-style:none;user-select:none;gap:12px;transition:background .15s}
+.study-toggle-head::-webkit-details-marker{display:none}
+.study-toggle-head:hover{background:rgba(103,0,230,.018)}
+.study-toggle-head h4{margin:0;font-size:15px;font-weight:800;color:#1d1432;flex:1;letter-spacing:-.005em}
+.study-toggle-arrow{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:999px;background:var(--primary-soft);color:var(--primary-strong);font-size:10px;flex-shrink:0;transition:transform .2s ease}
+.study-toggle-box[open] .study-toggle-arrow{transform:rotate(90deg)}
+.study-toggle-body{padding:12px 18px 18px;border-top:1px solid rgba(103,0,230,.05)}
+.study-toggle-body .study-tip:first-child,.study-toggle-body .study-warning:first-child{margin-top:0}
+
+/* ── 인터뷰어 기대 ── */
+.study-interviewer-q{margin-bottom:12px;padding:14px 16px;background:rgba(107,33,168,.04);border-left:3px solid #7c3aed;border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+.study-interviewer-label{display:inline-block;font-size:11px;font-weight:800;color:#7c3aed;margin-bottom:5px;letter-spacing:.04em}
+.study-interviewer-qtext{margin:0;font-size:15px;font-weight:600;color:#1f1830;line-height:1.65}
+
+/* ── 반응형 ── */
+@media (max-width:980px){.study-overview,.study-stats{grid-template-columns:1fr}.study-stat strong{font-size:18px}}
+@media (max-width:640px){
+  .study-card-wrap{font-size:15px}
+  .study-card-container{padding:14px}
+  .study-hero{padding:26px 20px}
+  .study-hero h1{font-size:26px}
+  .study-hero p{font-size:15px}
+  .study-question h3{font-size:18px}
+  .study-box p,.study-box li,.study-summary-list li,.study-list li,.study-qa-list li,.study-check-text,.study-tip,.study-warning,.study-answer-block p,.study-realworld-body,.study-formula-text{font-size:14px}
+  .study-code pre{font-size:13px !important;padding:14px 16px}
+  .study-roadmap-row{flex-direction:column}
+  .study-card-body{padding:0 16px 20px}
+  .study-card-head{padding:16px 16px 14px}
+}</style><div class="study-card-container"><section class="study-hero"><h1>[수집된 카드 제목]</h1><p>[수집된 부제목]</p><div class="study-tag-row"><span class="study-tag">[태그명 1]</span><span class="study-tag">[태그명 2]</span><span class="study-tag">[태그명 3]</span></div></section><section class="study-overview"><div class="study-panel"><div class="study-panel-header"><h2 class="study-panel-title">핵심 요약</h2></div><div class="study-panel-body"><ul class="study-summary-list"><li>[핵심 요약 1]</li><li>[핵심 요약 2]</li><li>[핵심 요약 3]</li></ul></div></div><div class="study-panel"><div class="study-panel-header"><h2 class="study-panel-title">빠른 메타 정보</h2></div><div class="study-panel-body"><div class="study-stats"><div class="study-stat"><strong>[CARD_COUNT]</strong><span>학습 카드 수</span></div><div class="study-stat"><strong>[PRIMARY_TAG]</strong><span>대표 언어</span></div><div class="study-stat"><strong>[ESTIMATED_TIME]</strong><span>학습 예상 시간</span></div><div class="study-stat"><strong id="study-current-status">[CURRENT_STATUS]</strong><span>현재 상태</span></div></div></div></div></section><section><h2 class="study-section-title"><span>Q&amp;A</span>핵심 질문과 상세 답변</h2>[CARD_BLOCKS]</section></div></div>
