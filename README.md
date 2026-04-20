@@ -44,6 +44,9 @@ bash install.sh
 
 ### Claude Code 실행
 
+> 💡 **설치 후 Claude Code를 새로 열어야** 새 스킬(`/cardgen`, `/cardgen-sync`)이 인식됩니다.
+> 이미 열려 있었다면 완전히 종료 후 다시 실행하세요.
+
 설치 후 Claude Code를 실행하세요.
 
 - **Windows**: 시작 메뉴에서 `Claude` 검색 후 실행, 또는 터미널에서 `claude` 입력
@@ -60,6 +63,8 @@ Claude Code 입력창에 아래처럼 입력하세요:
 ```
 
 잠시 후 **바탕화면(Desktop)** 에 `output.html` 파일이 생성됩니다. 브라우저로 열면 됩니다.
+
+> 💡 **처음 실행 시** Claude Code가 명령어 실행 권한을 요청하는 팝업을 띄울 수 있습니다. **Allow** 를 눌러야 정상 작동합니다.
 
 #### 지원 모드
 
