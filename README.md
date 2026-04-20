@@ -14,6 +14,15 @@ AI가 주제에 맞는 학습 카드 JSON을 생성하고, 즉시 HTML 파일로
 ```bash
 git clone https://github.com/Sundae-unity-dev/CardGen.git
 cd CardGen
+```
+
+**Windows (PowerShell):**
+```powershell
+powershell -ExecutionPolicy Bypass -File install.ps1
+```
+
+**Mac / Linux / Git Bash:**
+```bash
 bash install.sh
 ```
 
@@ -81,4 +90,5 @@ bash install.sh
 | `rules.md` | AI 카드 생성 규칙 및 JSON 스키마 |
 | `template.html` | 카드 HTML 템플릿 |
 | `render-card.js` | JSON → HTML 변환 Node.js 스크립트 |
-| `install.sh` | 설치 스크립트 |
+| `install.ps1` | 설치 스크립트 (Windows PowerShell) |
+| `install.sh` | 설치 스크립트 (Mac / Linux / Git Bash) |
