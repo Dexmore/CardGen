@@ -74,6 +74,37 @@ Claude Code 입력창에 아래처럼 입력하세요:
 | 면접 모드 | `[면접 모드]` | 30초/1분 답변, 심화 질문 포함 |
 | 시험 모드 | `[시험 모드]` | 예상 문제, 오답 포인트, 암기 트릭 포함 |
 
+### /cardgen-quiz — 학습 카드 자가진단
+
+방금 `/cardgen` 으로 생성한 카드셋(또는 지정한 카드 JSON)에서 객관식 8문항을 자동 출제합니다. 한 문항씩 인터랙티브로 풀고, 점수 밴드별 피드백과 오답 해설을 받습니다.
+
+```
+# 직전에 /cardgen 으로 만든 카드셋으로 바로 퀴즈
+/cardgen-quiz
+
+# 새 주제로 카드 생성 후 이어서 퀴즈
+/cardgen-quiz 파이썬 데코레이터
+
+# 특정 경로의 카드 JSON으로 퀴즈
+/cardgen-quiz C:\Users\사용자명\Desktop\my_cards.json
+```
+
+출제 규칙:
+- 정확히 8문항 (1~4 개념 이해, 5~8 실전 활용)
+- 3~4개 선택지, 응답 전 정답 비공개
+- 문항은 카드의 `concept` / `key_formula` / `real_world_usage` / `example_situation` 필드에서만 파생
+
+점수 밴드:
+
+| 점수 | 등급 | 다음 행동 |
+|---|---|---|
+| 7~8 | 🌟 마스터 | 다음 주제로 이동 |
+| 5~6 | 👍 거의 완료 | 틀린 문항의 출처 카드 복습 |
+| 3~4 | 📚 성장중 | 카드셋 재학습 후 재시도 |
+| 0~2 | 🔁 재시작 | 난이도 낮추거나 선수 개념부터 |
+
+**학습 루프**: `/cardgen` (생성) → 카드 학습 → `/cardgen-quiz` (자가진단) → 오답 카드 복습 → 재시도
+
 ### /cardgen-sync — 템플릿 동기화
 
 `template.html`을 수정한 뒤 Claude Code에서 실행하면, 변경된 내용에 맞춰 `render-card.js`와 `rules.md`를 자동으로 업데이트합니다.
@@ -96,6 +127,7 @@ Claude Code 입력창에 아래처럼 입력하세요:
 | 파일 | 설명 |
 |---|---|
 | `cardgen.md` | `/cardgen` skill 정의 |
+| `cardgen-quiz.md` | `/cardgen-quiz` skill 정의 |
 | `cardgen-sync.md` | `/cardgen-sync` skill 정의 |
 | `rules.md` | AI 카드 생성 규칙 및 JSON 스키마 |
 | `template.html` | 카드 HTML 템플릿 |

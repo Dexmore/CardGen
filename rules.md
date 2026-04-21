@@ -28,6 +28,7 @@ has_code: false면 code_language·example_code는 빈 문자열. example_situati
 ```json
 {
   "title": "", "subtitle": "", "mode": "면접|시험|개념학습",
+  "type": "Build|Learn", "time_estimate": "", "prerequisites": ["",""],
   "has_code": true, "tags": ["","",""], "summary": ["","",""],
   "cards": [{
     "question": "", "difficulty": "초급|중급|고급", "type": "개념 이해|실전 활용|실수 포인트|심화 탐구",
@@ -77,6 +78,17 @@ has_code: false면 code_language·example_code는 빈 문자열. example_situati
 
 # 품질 기준
 구체적 수치·사례 사용 / 코드 없는 주제는 example_situation으로 동등한 깊이 확보 / 모드 어조 일관성 / 카드 하나로 완결.
+
+# 카드셋 메타 (상단 필드)
+**type**: "Build"(직접 만들며 익히는 실습형) / "Learn"(개념 이해 중심). has_code와 독립. 예: 알고리즘 구현=Build, 역사 사건 이해=Learn.
+**time_estimate**: "~10분" 형식. 카드 수 × (2~3분) 기준. 빈 문자열 허용.
+**prerequisites**: 이 카드셋을 학습하기 전에 알아야 할 선수 개념 키워드 2~4개. 없으면 빈 배열.
+
+# /cardgen-quiz 연계 제약
+카드셋은 /cardgen-quiz 스킬의 입력이 될 수 있다. 퀴즈 품질 확보를 위해:
+- concept 5개 필드는 빈 문자열 금지(퀴즈 문항의 주요 파생원).
+- key_formula는 한 줄이어도 퀴즈 개념 문항에서 오답 제작의 핵심이므로 반드시 유의미하게.
+- example_situation(비코드) 또는 example_code(코드)는 실전 문항의 파생원이므로 공백 금지.
 
 # 줄바꿈 규칙
 모든 텍스트는 문자열 하나로 유지. HTML 줄바꿈 태그 금지.
