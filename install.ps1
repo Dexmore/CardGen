@@ -8,13 +8,11 @@ Write-Host "📦 cardgen skill 설치 중..."
 New-Item -ItemType Directory -Force -Path $CardgenDir | Out-Null
 New-Item -ItemType Directory -Force -Path $CommandsDir | Out-Null
 
-Copy-Item rules.md         "$CardgenDir\rules.md"         -Force
-Copy-Item template.html    "$CardgenDir\template.html"    -Force
-Copy-Item render-card.js   "$CardgenDir\render-card.js"   -Force
+$AssetFiles   = @('rules.md','template.html','render-card.js')
+$CommandFiles = @('cardgen.md','cardgen-quiz.md','cardgen-sync.md')
 
-Copy-Item cardgen.md       "$CommandsDir\cardgen.md"      -Force
-Copy-Item cardgen-quiz.md  "$CommandsDir\cardgen-quiz.md" -Force
-Copy-Item cardgen-sync.md  "$CommandsDir\cardgen-sync.md" -Force
+foreach ($f in $AssetFiles)   { Copy-Item $f "$CardgenDir\$f"   -Force }
+foreach ($f in $CommandFiles) { Copy-Item $f "$CommandsDir\$f" -Force }
 
 Write-Host ""
 Write-Host "✅ 설치 완료!"

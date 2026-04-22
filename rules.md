@@ -40,6 +40,7 @@ has_code: false면 code_language·example_code는 빈 문자열. example_situati
     "tips": "", "warnings": "",
     "explain_mode": { "one_liner": "", "summary_30s": "", "detail_1m": "", "deep_question": "", "deep_answer": "" },
     "exam_mode": { "likely_question": "", "answer_point": "", "wrong_choices": "", "memory_tip": "" },
+    "interviewer_expects": ["",""],
     "related_questions": ["",""], "progress_checklist": ["","","",""], "prerequisite": ""
   }]
 }
@@ -69,6 +70,8 @@ has_code: false면 code_language·example_code는 빈 문자열. example_situati
 **exam_mode**: 시험 모드일 때만 작성. 나머지 모드는 4개 필드 모두 빈 문자열.
 
 **difficulty**: 초급(입문자 이해 가능) / 중급(기초 응용) / 고급(원리 깊이 이해).
+
+**interviewer_expects**: 면접관이 이 질문에서 기대하는 핵심 키워드·태도·역량을 2~3개 서술. 면접 모드에서 특히 유의미하며, 다른 모드에서도 비워 두지 말 것.
 
 **progress_checklist**: 이해→적용→검증→심화 단계. 모드에 맞는 표현 사용.
 

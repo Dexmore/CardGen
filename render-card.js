@@ -89,7 +89,7 @@ function buildRealWorldBox(rw){
   if(!rw||typeof rw!=='object')return'';
   const parts=[];
   if(rw.industry_case)parts.push(`<p style="margin:0 0 10px;font-size:15px;color:#1e4a42;line-height:1.82"><strong>실제 사례:</strong> ${applyHL(rw.industry_case)}</p>`);
-  const ctx=rw.context||rw.tools_and_context||'';
+  const ctx=rw.context||'';
   if(ctx)parts.push(`<p style="margin:0 0 10px;font-size:15px;color:#1e4a42;line-height:1.82"><strong>관련 맥락:</strong> ${applyHL(ctx)}</p>`);
   if(rw.before_after)parts.push(`<p style="margin:0;font-size:15px;color:#1e4a42;line-height:1.82"><strong>적용 전→후:</strong> ${applyHL(rw.before_after)}</p>`);
   if(!parts.length)return'';
@@ -188,12 +188,12 @@ function renderCard(card,idx,isFirst){
   const expects=ensureList(card.interviewer_expects,0,'');
   const expectsHtml=expects.filter(Boolean).map(e=>`<li>${injectChip(e)}</li>`).join('');
   const expectsSection=expectsHtml?toggleBox('💬 면접관이 바라는 점',`<ul class="study-list study-qa-list">${expectsHtml}</ul>`):'';
-  const em=card.explain_mode??card.interview_mode??{};
+  const em=card.explain_mode??{};
   const oneLiner=em.one_liner||'';
-  const ans30=em.summary_30s||em.answer_30s||'';
-  const ans1m=em.detail_1m||em.answer_1m||'';
-  const deepQ=em.deep_question||em.followup_question||'';
-  const deepA=em.deep_answer||em.followup_answer||'';
+  const ans30=em.summary_30s||'';
+  const ans1m=em.detail_1m||'';
+  const deepQ=em.deep_question||'';
+  const deepA=em.deep_answer||'';
   const ivParts=[];
   if(oneLiner)ivParts.push(`<div class="study-answer-block" style="border-left-color:#7a35ff;margin-bottom:10px"><p style="font-size:14px;font-weight:700;color:#5a14e8">${applyHL(oneLiner)}</p></div>`);
   if(ans30)ivParts.push(`<div class="study-followup-wrap" style="margin-top:10px"><div class="study-followup-q"><span class="study-followup-label">⏱ 30초 핵심 요약</span></div><div class="study-followup-a"><p>${applyHL(ans30)}</p></div></div>`);
@@ -304,7 +304,6 @@ function renderHtml(data, templateHtml) {
   html=html.replace(/\[DIFFICULTY_STEPS\]/g,buildDiffSteps(cards));
   html=html.replace(/\[OVERALL_PROGRESS\]/g,buildOverallProgress(cards.length));
   html=html.replace(/\[CARD_BLOCKS\]/g,cardBlocksHtml);
-  html=html.replace('<span>현재 상태</span>','<span>난이도 구성</span>');
   const timerJs=`<script>(function(){document.addEventListener("click",function(e){var a=e.target.closest(".study-step-link");if(!a)return;e.preventDefault();var id=a.getAttribute("data-target");var card=document.querySelector('.study-card[data-card-id="'+id+'"]');if(card){card.open=true;card.scrollIntoView({behavior:"smooth"});}});})();<\/script>`;
   return minifyHtml(html+timerJs);
 }

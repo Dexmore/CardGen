@@ -12,15 +12,11 @@ echo "📦 cardgen skill 설치 중..."
 mkdir -p "$CARDGEN_DIR"
 mkdir -p "$COMMANDS_DIR"
 
-# 에셋 파일 복사
-cp rules.md "$CARDGEN_DIR/rules.md"
-cp template.html "$CARDGEN_DIR/template.html"
-cp render-card.js "$CARDGEN_DIR/render-card.js"
+ASSET_FILES=(rules.md template.html render-card.js)
+COMMAND_FILES=(cardgen.md cardgen-quiz.md cardgen-sync.md)
 
-# skill 파일 복사
-cp cardgen.md "$COMMANDS_DIR/cardgen.md"
-cp cardgen-quiz.md "$COMMANDS_DIR/cardgen-quiz.md"
-cp cardgen-sync.md "$COMMANDS_DIR/cardgen-sync.md"
+for f in "${ASSET_FILES[@]}";   do cp "$f" "$CARDGEN_DIR/$f";   done
+for f in "${COMMAND_FILES[@]}"; do cp "$f" "$COMMANDS_DIR/$f"; done
 
 echo ""
 echo "✅ 설치 완료!"
